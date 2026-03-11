@@ -28,6 +28,17 @@ meaningfully reduce latency and token cost without hurting output quality. Built
 automatic retry logic, fallback handling, and JSONL interaction logging. More
 interesting to me as a cost/quality tradeoff problem than as a software project.
 
+### [Hedge Fund Competition](https://github.com/shreyasnat2804/hedge_fund) `Python · scikit-learn · XGBoost · LightGBM`
+Quantitative finance competition: predict financial time-series targets across 23
+instruments and 4 horizons using ~5.3M rows of training data, evaluated on weighted
+RMSE. The interesting design decision was per-code vs. global modeling -- training one
+model per instrument rather than a single model across all codes, which turned out to
+be the better approach. Pipeline supports Ridge, Histogram Gradient Boosting, XGBoost,
+LightGBM, and CatBoost with temporal train/tune/val splits that respect the
+time-series structure. The scoring metric penalizes variance relative to the target,
+so the problem is really about calibration under distribution shift across different
+instruments and horizons.
+
 ### Synthetic Focus Group Simulator `Python · pgvector · PostgreSQL`
 Using LLMs to simulate consumer personas for pricing and product research. The hard
 problem wasn't the RAG pipeline -- it was making personas behave like real demographic
@@ -35,15 +46,6 @@ segments instead of like a language model that knows everything. Solved with epi
 constraints in persona prompts: the model is instructed to reason only from what someone
 in that demographic context would plausibly know, not from general world knowledge.
 Includes Van Westendorp and Gabor-Granger pricing modules.
-
-### [SkySolver](https://github.com/shreyasnat2804/skySolver) `Python · FastAPI · React · WebSockets`
-Airline operations are a good domain for thinking about optimization under uncertainty --
-cascading failures, hard constraints (crew legality, aircraft compatibility), and the
-tradeoff between local fixes and global stability. Built an event-driven simulation
-engine that streams live disruptions over WebSockets to a geospatial dashboard, with a
-multi-objective optimizer that generates explainable recovery plans. The "Scenario
-Studio" lets you run chaos engineering at up to 5x speed to test how the system degrades
-and recovers.
 
 ---
 
